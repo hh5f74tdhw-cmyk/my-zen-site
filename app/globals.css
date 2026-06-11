@@ -1,26 +1,198 @@
-@import "tailwindcss";
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --color-background: var(--background);
+  --font-heading: 'Noto Serif SC', 'Songti SC', serif;
+  --font-serif: 'Noto Serif SC', 'Songti SC', serif;
+  --font-sans: 'Noto Sans SC', 'PingFang SC', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, monospace;
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-background: var(--background);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+:root {
+  /* 福运道 — 暖调宣纸米 / 深墨绿 / 琥珀大地 */
+  --background: #f7f5f0;
+  --foreground: #1a2f29;
+  --card: #fcfaf6;
+  --card-foreground: #1a2f29;
+  --popover: #fcfaf6;
+  --popover-foreground: #1a2f29;
+  --primary: #a3704c;
+  --primary-foreground: #fdfcf9;
+  --secondary: #efebe2;
+  --secondary-foreground: #1a2f29;
+  --muted: #efebe2;
+  --muted-foreground: #6f6a5e;
+  --accent: #ece6da;
+  --accent-foreground: #a3704c;
+  --destructive: #a3704c;
+  --border: #e3ddcf;
+  --input: #e3ddcf;
+  --ring: #a3704c;
+  --chart-1: #a3704c;
+  --chart-2: #1a2f29;
+  --chart-3: #6f6a5e;
+  --chart-4: #c2986f;
+  --chart-5: #8a8170;
+  --radius: 0.75rem;
+  --sidebar: #fcfaf6;
+  --sidebar-foreground: #1a2f29;
+  --sidebar-primary: #a3704c;
+  --sidebar-primary-foreground: #fdfcf9;
+  --sidebar-accent: #ece6da;
+  --sidebar-accent-foreground: #a3704c;
+  --sidebar-border: #e3ddcf;
+  --sidebar-ring: #a3704c;
+}
+
+.dark {
+  /* 墨夜静境 */
+  --background: #161a18;
+  --foreground: #e9e4d8;
+  --card: #1d2220;
+  --card-foreground: #e9e4d8;
+  --popover: #1d2220;
+  --popover-foreground: #e9e4d8;
+  --primary: #c2986f;
+  --primary-foreground: #161a18;
+  --secondary: #252b28;
+  --secondary-foreground: #e9e4d8;
+  --muted: #252b28;
+  --muted-foreground: #a39d8e;
+  --accent: #252b28;
+  --accent-foreground: #c2986f;
+  --destructive: #c2986f;
+  --border: #313835;
+  --input: #313835;
+  --ring: #c2986f;
+  --chart-1: #c2986f;
+  --chart-2: #a39d8e;
+  --chart-3: #e9e4d8;
+  --chart-4: #a3704c;
+  --chart-5: #8a8170;
+  --sidebar: #1d2220;
+  --sidebar-foreground: #e9e4d8;
+  --sidebar-primary: #c2986f;
+  --sidebar-primary-foreground: #161a18;
+  --sidebar-accent: #252b28;
+  --sidebar-accent-foreground: #c2986f;
+  --sidebar-border: #313835;
+  --sidebar-ring: #c2986f;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    @apply font-sans;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@keyframes slow-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes reverse-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+@keyframes gentle-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-slow-spin {
+  animation: slow-spin 36s linear infinite;
+}
+
+.animate-reverse-spin {
+  animation: reverse-spin 48s linear infinite;
+}
+
+.animate-gentle-float {
+  animation: gentle-float 6s ease-in-out infinite;
+}
+
+@keyframes star-twinkle {
+  0%,
+  100% {
+    opacity: 0.85;
+    transform: scale(1) rotate(0deg);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.12) rotate(8deg);
+  }
+}
+
+.animate-star-twinkle {
+  animation: star-twinkle 3.2s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-slow-spin,
+  .animate-reverse-spin,
+  .animate-gentle-float,
+  .animate-star-twinkle {
+    animation: none;
+  }
 }
